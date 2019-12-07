@@ -3,12 +3,17 @@ import { View, TextInput, StyleSheet } from 'react-native';
 //importing built in icons
 import { Feather} from '@expo/vector-icons';
 
-const SearchBar = () => {
+const SearchBar = ({ term, onTermChange}) => {
     return (
         <View style={styles.backgroundStyle}>
             <Feather name="search" style={styles.iconStyle}/>
-            <TextInput style={styles.inputStyle}
+            <TextInput 
+            style={styles.inputStyle}
+            autoCorrect={false}
+            autoCapitalize='none'
             placeholder='Search'
+            value={term}
+            onChangeText={newTerm => onTermChange(newTerm)}
             />
         </View>
     );
@@ -17,7 +22,7 @@ const SearchBar = () => {
 const styles = StyleSheet.create({
     backgroundStyle: {
         backgroundColor: '#F0EEEE',
-        marginTop:15,
+        marginTop:15, 
         height: 50,
         borderRadius: 5,
         marginHorizontal: 15,
